@@ -1,0 +1,26 @@
+[package]
+name = "tcp-lat"
+version = "0.1.0"
+edition = '2018'
+
+[dependencies]
+tokio = { version = "0.2", features = ["macros", "stream"] }
+redbpf = "1.0"
+redbpf-macros = "1.0"
+redbpf-probes = "1.0"
+
+[build-dependencies]
+cargo-bpf = "1.0"
+
+[features]
+default = []
+probes = []
+
+[[bin]]
+name = "xdp_tcp"
+path = "src/xdp_tcp/main.rs"
+required-features = ["probes"]
+
+[[bin]]
+name = "tcp_lat_user"
+path = "src/tcp_lat_user/main.rs"
